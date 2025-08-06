@@ -1,4 +1,4 @@
-# Start Mini JS Assignment Repository
+# Start Mini JS Assignment Repository 🤡 
 
 ## 사용 방법
 
