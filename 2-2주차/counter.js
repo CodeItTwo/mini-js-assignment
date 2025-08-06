@@ -19,3 +19,5 @@ button.addEventListener('click', function() {
 
 // 페이지 로드 시 초기 메시지 표시
 messageDiv.innerHTML = '<p style="color: gray;">버튼을 클릭해보세요!</p>';
+
+console.log('변경')
