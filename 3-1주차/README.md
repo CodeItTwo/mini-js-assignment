@@ -3,19 +3,23 @@
 ### 과제 1
 다음 코드의 결과를 예측하고 `?` 부분을 수정해주세요
 ```javascript
-console.log(typeof []);          // ?
-console.log(typeof null);        // ?
-console.log(null == undefined);  // ?
-console.log(null === undefined); // ?
+console.log(typeof []);          // "object" = 배열의 한 객체라 오브젝트에 속함
+console.log(typeof null);        // "object" = 원래는 null같은 타입의 이름이 나와야하나 오래된 설계 버그지만 그대로 유지됨(하위 호환성을 위해 남겨둠.)
+console.log(null == undefined);  // "true" = 동등비교기때문에 true값이 나오게 된다.
+console.log(null === undefined); // "false" = 값과 데이터 타입까지 비교하기 때문에 false값이 나오게 된다.
 ```
 
 ### 과제 2
 올바른 연산자를 선택하세요!
 ```javascript
-const score = 0;           // 0점도 유효한 점수
-const name = "";           // 빈 이름은 "익명"으로
-const url = null;          // 아직 설정 안됨
-const isVip = false;       // 의도적으로 일반회원
+const score = 0;           // 0점도 유효한 점수 = '??' (0점도 유효한 점수로 표현해야 되기 때문에 '??'사용)
+const name = "";           // 빈 이름은 "익명"으로 = '||' (익명은 빈값이기 때문에 '||')
+const url = null;          // 아직 설정 안됨 = '??' (null/underfined는 기본값) 
+const isVip = false;       // 의도적으로 일반회원 = "??" (0, "", false는 유지)  
+
+값이 0, ""(빈문자열), false여도 유지해야 한다 → ??
+
+빈 문자열이나 0도 기본값으로 바꿔야 한다 → ||
 
 // TODO: 올바른 연산자 선택
 const finalScore = score ?? 100;    // 0점 유지하고 싶음
@@ -36,14 +40,14 @@ const finalUrl = url ?? "/default"; // null만 기본값으로
 
 **미션**:
 ---
-#### step1. 조건문을 수정해서 0살도 올바르게 처리하기
+#### step1. 조건문을 수정해서 0살도 올바르게 처리하기 = 자바스크립트에서는 0이 fasly값이다.
 #### step2. 조건이 올바르게 수정되면 `calculatePrice` 를 `switch case` 문으로 변경 하기
 #### step3. `calculatePrice` 함수에 bage 파라미터를 추가하여 age,bage 를 받도록하기
 #### step4. `calculatePrice` 함수에 bage 값이 `"독립유공자"` 이면 `"무료"`라고 보여주기 (마치 0~3세 처럼)
 
 ---
 
-###  멘토링시 각 step 을 구현한 이유와 해결과정을 설명해주 시면 좋습니다 🤡
+###  멘토링시 각 step 을 구현한 이유와 해결과정을 설명해주시면 좋습니다 🤡
 
 
 
