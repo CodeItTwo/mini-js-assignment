@@ -4,29 +4,57 @@
 /*
 나이(age)에 따라 요금을 계산 하는 함수
  */
-function calculatePrice(age) {
+function calculatePrice(age, badge = false) {
     // 문제가 있는 조건문
-    if (age) {
-        if (age <= 3) {
+    // 1. if문 안에 console.log(age) 했을 때, 0을 출력 안함 -> false 처리하여 진입 안했다는 뜻
+    // 2. 조건을 age -> age !== null 로 수정하여, 일치 비교로 0일 때도 실행되도록 함
+    // if (age !== null ) {
+    //     console.log(age);
+    //     if (age <= 3) {
+    //         return "무료";
+    //     } else if (age <= 12) {
+    //         return "5,000원 (어린이)";
+    //     } else if (age <= 64) {
+    //         return "10,000원 (성인)";
+    //     } else {
+    //         return "3,000원 (경로우대)";
+    //     }
+        
+    // } else {
+    //     return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
+    // }
+
+    // 2. switch 문으로 변경
+    let isInvalidAge =
+        age === null ||
+        isNaN(age) ||
+        age < 0 ||
+        !Number.isInteger(age) ||
+        typeof age === "bigint";
+    switch(true) {
+        case badge:
+            return "무료 (독립유공자)";
+        case isInvalidAge:
+            return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
+        case age<=3:
             return "무료";
-        } else if (age <= 12) {
+        case age<=12:
             return "5,000원 (어린이)";
-        } else if (age <= 64) {
+        case age<=64:
             return "10,000원 (성인)";
-        } else {
+        case 65<=age:
             return "3,000원 (경로우대)";
-        }
-    } else {
-        return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
     }
 }
+
+
 
 /*
   전달받은 나이(age)에 따라 가격을 계산하고, HTML에 결과를 표시하는 역할
  */
-function testAge(age) {
-    const result = calculatePrice(age);
-    const display = age === null ? 'null' : `${age}살`;
+function testAge(age, badge) {
+    const result = calculatePrice(age, badge);
+    const display = badge ? "독립유공자" : (age === null ? 'null' : `${age}살`);
 
     // document → 브라우저가 HTML 문서를 객체로 표현한 것(DOM의 최상위 진입점)
     // getElementById('result') → HTML에서 id="result"인 요소를 찾아 반환
