@@ -40,7 +40,7 @@ const finalUrl = url ?? "/default"; // null만 기본값으로
 
 **미션**:
 ---
-#### step1. 조건문을 수정해서 0살도 올바르게 처리하기 = 자바스크립트에서는 0이 fasly값이다.
+#### step1. 조건문을 수정해서 0살도 올바르게 처리하기
 #### step2. 조건이 올바르게 수정되면 `calculatePrice` 를 `switch case` 문으로 변경 하기
 #### step3. `calculatePrice` 함수에 bage 파라미터를 추가하여 age,bage 를 받도록하기
 #### step4. `calculatePrice` 함수에 bage 값이 `"독립유공자"` 이면 `"무료"`라고 보여주기 (마치 0~3세 처럼)
@@ -48,6 +48,17 @@ const finalUrl = url ?? "/default"; // null만 기본값으로
 ---
 
 ###  멘토링시 각 step 을 구현한 이유와 해결과정을 설명해주시면 좋습니다 🤡
+step1. index.html을 실행 후 0살일때 if(age) 에서 0살을 falsy로 잘못처리되어 오류가 발생하는것을 확인. -> 그말인 즉슨 0살도 정상적으로 "무료"로 계산되도록 변경해야함 -> if (age) 대신에, 진짜 "나이가 없다"는 상황만 검사해야함 ->     
+//내용추가 하여 나이가 없는 상황만 검사
+if (age == null || Number.isNaN(age) || age < 0) {
+        return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
+    }
+-> 추가 후 "나이를 알 수 없어서 요금을 계산할 수 없습니다"가 아닌 'undefined'값이 표출되는걸 확인.
+
+step2. if문에서 switch case문으로 변경완료
+step3. bage 파라미터를 추가하여 age,bage를 받도록 설정완료
+step4. 독립유공자 버튼 추가및 무료 표출확인완료. (calculatePrice 순서를 badge 먼저 검사로 수정하여 첫번째 인자에 null을 포함하여도 무료로 표출되게 변경)
+
 
 
 
