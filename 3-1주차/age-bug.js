@@ -6,7 +6,7 @@
  */
 function calculatePrice(age) {
     // 문제가 있는 조건문
-    if (age) {
+    if (age) { // ㅏㅇ아아ㅏ
         if (age <= 3) {
             return "무료";
         } else if (age <= 12) {
