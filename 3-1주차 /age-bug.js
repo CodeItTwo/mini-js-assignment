@@ -6,10 +6,11 @@
  */
 function calculatePrice(age, bage) {
   // 문제가 있는 조건문
+  if (bage === "독립유공자") {
+    return "무료";
+  }
   if (typeof age !== "number" || age < 0) {
     return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
-  } else if (bage === "독립유공자") {
-    return "무료";
   } else {
     switch (true) {
       case age <= 3:
@@ -41,13 +42,16 @@ function calculatePrice(age, bage) {
 /*
   전달받은 나이(age)에 따라 가격을 계산하고, HTML에 결과를 표시하는 역할
  */
-function testAge(age) {
-  const result = calculatePrice(age);
-  const display = age === null ? "null" : `${age}살`;
+function testAge(age, bage) {
+  const result = calculatePrice(age, bage);
 
-  // document → 브라우저가 HTML 문서를 객체로 표현한 것(DOM의 최상위 진입점)
-  // getElementById('result') → HTML에서 id="result"인 요소를 찾아 반환
-  // innerHTML → 해당 요소 안의 HTML 내용을 읽거나(가져오기) 변경(설정)하는 속성
+  let display;
+  if (bage === "독립유공자") {
+    display = "독립유공자";
+  } else {
+    display = `${age}살`;
+  }
+
   document.getElementById(
     "result"
   ).innerHTML = `<h3>${display} 결과:</h3><p>${result}</p>`;
