@@ -9,6 +9,7 @@ describe("reactive test", () => {
     const state = observable({ a: 1, b: 2 });
 
     let computed = '';
+
     function compute() {
        computed = `a + b = ${state.a + state.b}`;
     }
@@ -24,7 +25,7 @@ describe("reactive test", () => {
 
     expect(computed).toBe(`a + b = 12`);
 
-    state.b = 18;
+    state.a = 18;
 
     await wait();
     expect(computed).toBe(`a + b = 30`);
