@@ -4,10 +4,21 @@
 /*
 나이(age)에 따라 요금을 계산 하는 함수
  */
-function calculatePrice(age) {
-    // 문제가 있는 조건문
-    if (age) {
-        if (age <= 3) {
+
+// badge === "군인"
+function calculatePrice(age, badge) {
+    // 위치를 수정하여 첫번째 인자가 null값일때도 무료로 표출되게 수정.
+    if (badge === "독립유공자" ) {
+        return "무료";
+    }
+
+    // falsy 이면 .. 0 .
+    if (age == null || Number.isNaN(age) || age < 0) {
+        return "❌ 나이를 알 수 없어서 요금을 계산할 수 없습니다.";
+    }
+
+    switch (true) {
+        case (age <= 3):
             return "무료";
         } else if (age <= 12) {
             return "5,000원 (어린이)";
