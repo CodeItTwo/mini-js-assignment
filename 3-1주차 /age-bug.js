@@ -5,6 +5,7 @@
 나이(age)에 따라 요금을 계산 하는 함수
  */
 function calculatePrice(age) {
+
     // 문제가 있는 조건문
     if (age) {
         if (age <= 3) {
@@ -21,12 +22,24 @@ function calculatePrice(age) {
     }
 }
 
+function text(str) {
+ alert(str);
+}
+
+
 /*
   전달받은 나이(age)에 따라 가격을 계산하고, HTML에 결과를 표시하는 역할
  */
 function testAge(age) {
     const result = calculatePrice(age);
     const display = age === null ? 'null' : `${age}살`;
+    
+//  if( age === null){
+//    return  'null'
+//  }else{
+//    return `${age}살`
+//  }
+
 
     // document → 브라우저가 HTML 문서를 객체로 표현한 것(DOM의 최상위 진입점)
     // getElementById('result') → HTML에서 id="result"인 요소를 찾아 반환
@@ -37,6 +50,7 @@ function testAge(age) {
 
 // 페이지 로드시 설명 표시
 window.onload = function() {
+    // window.document // 
     document.getElementById('result').innerHTML = 
         `<p>👆 위의 버튼들을 클릭해서 각 나이별 요금을 확인해보세요!</p>
          <p><strong>특히 0살 버튼을 클릭해보세요. 무료여야 하는데...</strong></p>`;
