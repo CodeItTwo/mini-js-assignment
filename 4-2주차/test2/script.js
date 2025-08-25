@@ -1,11 +1,15 @@
 // Step 1: Object.assign 구현하기 - myObjectAssign 를 완성 해주세요
 function myObjectAssign(target, ...sources) {
     // 👈여기에 구현하세요
-
+    for (const source in sources) { // sources 배열 내 객체를 하나씩 불러옴
+        for (const key in sources[source]) { // 떨어진 객체 속 값을 하나씩 불러옴(이름은 자동으로)
+            target[key] = sources[source][key]; // target에 할당하여 복사
+        }
+    }
     // - target → 속성을 붙여 넣을 대상 객체
     // - sources → target에 덮어씌울 객체(들)
     // 🚨 힌트: for문과 객체 키접근 사용
-
+        
     // 🚨 ...sources 는 Rest Parameter 기법 아래와같이 넘어온 모든 인자를 배열로 묶어준다
     // [EXAMPLE]:
     // function sum(...numbers) {
@@ -40,7 +44,17 @@ function testStep1() {
 function myDeepCopy(obj) {
     // 👈여기에 구현하세요
     // 🚨 힌트: obj 가 falsy 일 체크, typeof 체크, 배열 객체 일때 체크, 재귀
+    if (obj === null || typeof obj !== 'object') { // null만 따로 빼서 확인하는 이유 = null의 자료형이 object이기 때문
+        return obj; // object가 아닌 경우(원시값)는 그냥 반환(복사)
+    }
+    const deepCopy = Array.isArray(obj) ? [] : {}; // object중 배열일 경우 [], 아닐경우(객체) {}
 
+    for (const key in obj) { 
+        //if (obj.hasOwnProperty(key)) {
+            deepCopy[key] = myDeepCopy(obj[key]); // 재귀
+        //}
+    }
+    return deepCopy;
 }
 
 function testStep2() {
@@ -55,7 +69,7 @@ function testStep2() {
         copied.numbers.push(4);
         copied.nested.value = 'changed';
         
-        if (original.numbers.length === 3 && original.nested.value === 'deep') {
+        if (original.numbers.length === 3 && original.nested.value === 'deep') { // 원본과 카피의 참조가 완전히 끊어짐을 의미
             document.getElementById('result2').textContent = '✅ 성공! 깊은복사가 올바르게 작동합니다.';
         } else {
             document.getElementById('result2').textContent = '❌ 실패! 원본이 변경되었습니다. 다시 시도해보세요.';
@@ -68,9 +82,10 @@ function testStep2() {
 // Step 3: 비교하기
 function compareCopyMethods() {
     // 👈여기에 구현하세요
+}
     // const shallow = ?
     // const deep = ?
-}
+
 
 function testStep3() {
     try {
