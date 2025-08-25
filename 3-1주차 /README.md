@@ -3,10 +3,10 @@
 ### 과제 1
 다음 코드의 결과를 예측하고 `?` 부분을 수정해주세요
 ```javascript
-console.log(typeof []);          // ?
-console.log(typeof null);        // ?
-console.log(null == undefined);  // ?
-console.log(null === undefined); // ?
+console.log(typeof []);          // object
+console.log(typeof null);        // object
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
 ```
 
 ### 과제 2
@@ -21,6 +21,7 @@ const isVip = false;       // 의도적으로 일반회원
 const finalScore = score ?? 100;    // 0점 유지하고 싶음
 const finalName = name || "익명";    // 빈 이름은 익명으로
 const finalUrl = url ?? "/default"; // null만 기본값으로
+const finalVip = isVip || "일반회원"; // 의도적으로 일반회원이므로 false(0)를 유효한 값으로, 일반회원 처리
 ```
 
 ### 과제 3
