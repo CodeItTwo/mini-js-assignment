@@ -5,35 +5,36 @@
 핸드폰 번호가 올바른 형식인지 검증하는 함수
 */
 function validatePhone(phoneNumber) {
-    const 조건문 = false
+    const phoneParts = phoneNumber.split("-");  // phoneParts = [[010], [1234], [7284]]
+    //const 조건문 = false
     // 🚨 버그를 해결하고 알맞은 조건문을 기입하세요
     
     // 1. 하이픈이 포함된 형식인지 확인
-    if (조건문) {
+    if (phoneParts.length !== 3) {
         return "❌ 올바른 길이가 아닙니다.";
     }
     
     // 2. 하이픈 위치 확인 (4번째, 9번째 자리)
-    if (조건문) {
+    if (phoneParts[0].length!==3 || (phoneParts[1].length || phoneParts[2].length)!==4) {
         return "❌ 하이픈 위치가 잘못되었습니다.";
     }
     
     // 앞자리 번호 추출
 
     // 🚨 버그: 모든 유효한 앞자리를 체크하지 못함
-    if (조건문) {
+    if (phoneParts[0] !== ("010" ||  "011")) {
         return "❌ 지원하지 않는 통신사 번호입니다.";
     }
     
     // 중간 번호 (4자리)
     // 🚨 버그: 숫자인지 제대로 확인하지 못함
-    if (조건문) {
+    if (!Number(phoneParts[1])) {
         return "❌ 중간 번호가 올바르지 않습니다.";
     }
     
     // 뒷자리 번호 (4자리)
     // 🚨 버그: 숫자인지 제대로 확인하지 못함
-    if (조건문) {
+    if (!Number(phoneParts[2])) {
         return "❌ 뒷자리 번호가 올바르지 않습니다.";
     }
     
