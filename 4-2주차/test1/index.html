@@ -28,6 +28,11 @@
     <button onclick="testPhone('010-123-45678')">010-123-45678 (잘못된 자릿수)</button>
     <button onclick="testPhone('020-1234-5678')">020-1234-5678 (없는 번호)</button>
     <button onclick="testPhone('')">빈 문자열</button>
+    <button onclick="testPhone('010-12.3-5678')">010-12.3-5678</button>
+    <button onclick="testPhone('010-1abc-5678')">010-1abc-5678</button>
+    <button onclick="testPhone('010-0000-0000')">010-0000-0000</button>
+    <button onclick="testPhone('010-0000 - 0000')">010-0000 - 0000</button>   
+    <button onclick="testPhone('010-000 0-0000')">010-0 000-0000</button>
 
     <div id="result"></div>
 
