@@ -50,9 +50,9 @@ function myDeepCopy(obj) {
     const deepCopy = Array.isArray(obj) ? [] : {}; // object중 배열일 경우 [], 아닐경우(객체) {}
 
     for (const key in obj) { 
-        //if (obj.hasOwnProperty(key)) {
+        if (obj.hasOwnProperty(key)) {
             deepCopy[key] = myDeepCopy(obj[key]); // 재귀
-        //}
+        }
     }
     return deepCopy;
 }
@@ -82,9 +82,10 @@ function testStep2() {
 // Step 3: 비교하기
 function compareCopyMethods() {
     // 👈여기에 구현하세요
+
 }
-    // const shallow = ?
-    // const deep = ?
+    //const shallow = ?
+    //const deep = ?
 
 
 function testStep3() {
@@ -94,9 +95,10 @@ function testStep3() {
         //  구현해야 할 부분
         const shallow = { ...original };  // 힌트로 제공
         const deep = myDeepCopy(original);
-        
+
         shallow.info.age = 30;
         deep.info.age = 35;
+
         
         const result = `원본 age: ${original.info.age}
         얕은복사 후 원본이 ${original.info.age === 30 ? '변경됨' : '보존됨'}
