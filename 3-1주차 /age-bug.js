@@ -47,8 +47,10 @@ function testAge(age, bage) {
 
   let display;
   if (bage === "독립유공자") {
+    // 독립유공자 일 경우 age 상관없이 "독립유공자 결과"로 나올 수 있도록 조건 추가.
     display = "독립유공자";
   } else {
+    // 독립유공자가 아닐 경우, 나이 호출
     display = `${age}살`;
   }
 
