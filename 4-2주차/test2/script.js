@@ -6,6 +6,13 @@ function myObjectAssign(target, ...sources) {
     // - sources → target에 덮어씌울 객체(들)
     // 🚨 힌트: for문과 객체 키접근 사용
 
+    for(let source of sources){    // 객체들의 배열 sources 순회
+        for(let key in source) {    // 뽑아낸 객체 source의  key
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }
     // 🚨 ...sources 는 Rest Parameter 기법 아래와같이 넘어온 모든 인자를 배열로 묶어준다
     // [EXAMPLE]:
     // function sum(...numbers) {
@@ -39,8 +46,27 @@ function testStep1() {
 // Step 2: 깊은복사 구현하기 - 예제 객체(original)를 복사해주세요
 function myDeepCopy(obj) {
     // 👈여기에 구현하세요
-    // 🚨 힌트: obj 가 falsy 일 체크, typeof 체크, 배열 객체 일때 체크, 재귀
+    if(obj === null ||typeof obj !== 'object') return obj;
 
+    // obj가 배열일 경우
+    if(Array.isArray(obj)) {
+        const copy = [];
+        for(let i=0;i<obj.length; i++) {
+            copy[i] = myDeepCopy(obj[i]);
+        }
+        return copy;
+    }
+
+    // obj가 객체일 경우
+    const copy = {};
+    for(let key in obj) {
+        if(Object.prototype.hasOwnProperty.call(obj, key)) {
+            copy[key] = myDeepCopy(obj[key]);
+        }
+    }
+    return copy;
+
+    // 🚨 힌트: obj 가 falsy 일 체크, typeof 체크, 배열 객체 일때 체크, 재귀
 }
 
 function testStep2() {
@@ -67,28 +93,52 @@ function testStep2() {
 
 // Step 3: 비교하기
 function compareCopyMethods() {
+    try {
+        const original = {
+            name: 'Bang',
+            info: {
+                age: 26,
+                job: false,
+                phone: 'iPhone 13',
+            }
+        }
+    
+        const shallow = {...original};
+        const deep = myDeepCopy(original);
+    
+        shallow.info.age = 25;
+        deep.info.age = 100;
+        
+        const result = `원본 age: ${original.info.age}
+        얕은 복사 후: ${original.info.age === 26? '보존됨':'변경됨'}
+        깊은 복사 후: ${original.info.age === 25? '보존됨':'변경됨'}`;
+
+        document.getElementById('result3').textContent = result;
+    } catch (error) {
+        document.getElementById('result3').textContent = '❌에러: '+error.message;
+    }
     // 👈여기에 구현하세요
     // const shallow = ?
     // const deep = ?
 }
 
-function testStep3() {
-    try {
-        const original = { name: 'John', info: { age: 25 } };
+// function testStep3() {
+//     try {
+//         const original = { name: 'John', info: { age: 25 } };
         
-        //  구현해야 할 부분
-        const shallow = { ...original };  // 힌트로 제공
-        const deep = myDeepCopy(original);
+//         //  구현해야 할 부분
+//         const shallow = { ...original };  // 힌트로 제공
+//         const deep = myDeepCopy(original);
         
-        shallow.info.age = 30;
-        deep.info.age = 35;
+//         shallow.info.age = 30;
+//         deep.info.age = 35;
         
-        const result = `원본 age: ${original.info.age}
-        얕은복사 후 원본이 ${original.info.age === 30 ? '변경됨' : '보존됨'}
-        깊은복사는 원본을 ${original.info.age === 25 ? '보존함' : '변경함'}`;
+//         const result = `원본 age: ${original.info.age}
+//         얕은복사 후 원본이 ${original.info.age === 30 ? '변경됨' : '보존됨'}
+//         깊은복사는 원본을 ${original.info.age === 25 ? '보존함' : '변경함'}`;
         
-        document.getElementById('result3').textContent = result;
-    } catch (error) {
-        document.getElementById('result3').textContent = '❌ 에러: ' + error.message;
-    }
-}
+//         document.getElementById('result3').textContent = result;
+//     } catch (error) {
+//         document.getElementById('result3').textContent = '❌ 에러: ' + error.message;
+//     }
+// }
