@@ -2,6 +2,8 @@
 function myObjectAssign(target, ...sources) {
     // 👈여기에 구현하세요
 
+    // git 을 깨닳아버림 ㅇㅇ..
+
     // - target → 속성을 붙여 넣을 대상 객체
     // - sources → target에 덮어씌울 객체(들)
     // 🚨 힌트: for문과 객체 키접근 사용
