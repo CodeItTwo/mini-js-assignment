@@ -2,9 +2,9 @@
 function myObjectAssign(target, ...sources) {
     for (const source of sources) { // for .. of 를 사용해 실제 객체를 꺼내옴 (소스들에서 꺼내온 실제 객체를 소스에 가져옴)
         for (const key in source) {  // 꺼낸 객체의 key 들을 돌아봄
-            target[key] = source [key]; // target에 key 복사 
+                target[key] = source [key]; // target에 key 복사 
+            }
         }
-    }
     return target;
 }
 
@@ -28,10 +28,19 @@ function testStep1() {
 
 // Step 2: 깊은복사 구현하기 - 예제 객체(original)를 복사해주세요
 function myDeepCopy(obj) {
-    // 👈여기에 구현하세요
-    // 🚨 힌트: obj 가 falsy 일 체크, typeof 체크, 배열 객체 일때 체크, 재귀
+    if (obj === null || typeof obj !== 'object') {  // null 이나 원시타입은 그대로 반환
+        return obj;
+    }
+    const deepCopy = Array.isArray(obj) ? [] : {}; // obj가 배열이면 새로운 배열 생성, 객체면 객체 생성
 
+    for (const key in obj) {  // obj 객체 안에 있는 모든 키를 꺼내옴
+        if (obj.hasOwnProperty(key)) {
+            deepCopy[key] = myDeepCopy(obj[key]); // obj[key] 값을 깊은 복사하여 deepCopy 라는 새 객체에 저장
+        }
+    }
+    return deepCopy; // 복사한 새 객체를 반환
 }
+
 
 function testStep2() {
     try {
