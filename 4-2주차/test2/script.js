@@ -1,23 +1,11 @@
 // Step 1: Object.assign 구현하기 - myObjectAssign 를 완성 해주세요
 function myObjectAssign(target, ...sources) {
-    // 👈여기에 구현하세요
-
-    // git 을 깨닳아버림 ㅇㅇ..
-
-    // - target → 속성을 붙여 넣을 대상 객체
-    // - sources → target에 덮어씌울 객체(들)
-    // 🚨 힌트: for문과 객체 키접근 사용
-
-    // 🚨 ...sources 는 Rest Parameter 기법 아래와같이 넘어온 모든 인자를 배열로 묶어준다
-    // [EXAMPLE]:
-    // function sum(...numbers) {
-    //     console.log(numbers);
-    // }
-    //
-    // sum(1, 2, 3, 4);
-    // => 출력: [1, 2, 3, 4]   ← numbers 가 배열이 됨
-
-    return target
+    for (const source of sources) { // for .. of 를 사용해 실제 객체를 꺼내옴 (소스들에서 꺼내온 실제 객체를 소스에 가져옴)
+        for (const key in source) {  // 꺼낸 객체의 key 들을 돌아봄
+            target[key] = source [key]; // target에 key 복사 
+        }
+    }
+    return target;
 }
 
 function testStep1() {
