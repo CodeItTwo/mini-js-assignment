@@ -31,16 +31,24 @@ function App() {
     return overlap;
   }
 
-  let result = isObjEqual(wordsObj, inputObj);
+  let charCount = isObjEqual(wordsObj, inputObj);
+
+  function isEqualWords(WORDS, value) {
+    if (String(WORDS) === String(value)) {
+      return '🎉 Collect!';
+    }
+    return;
+  }
+
+  let equalWords = isEqualWords(WORDS, value);
 
   return (
     <div className="app">
-      <p>같은 글자수 : </p>
-      <p>입력값과 WORDS 가 동일한가? : </p>
+      <p>같은 글자수 : {charCount}</p>
+      <p>입력값과 WORDS 가 동일한가? : {equalWords} </p>
       <p>대상 문자 : {WORDS}</p>
       <p>input Text : </p>
       <input value={value} onChange={onChangeInput} />
-      <p>같은 글자 수 : {result} </p>
     </div>
   );
 }
