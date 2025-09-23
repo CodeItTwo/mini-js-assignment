@@ -40,12 +40,11 @@
 function myObjectAssign(target, ...sources) {
 
     // 👈 여기에 코드를 작성하세요
-    for(const source of sources){
-      for(let key in source){
-        target
+    for (const source of sources) {
+      for (let key in source) {
+        target[key] = source[key];
       }
     }
-
     * 힌트: for문을 사용해서 sources의 모든 속성을 target에 복사
 }
     </pre>
@@ -61,8 +60,23 @@ function myObjectAssign(target, ...sources) {
 function myDeepCopy(obj) {
 
     // 👈 여기에 코드를 작성하세요
-    * 힌트: 재귀함수 사용, typeof로 타입 체크, Array.isArray로 배열 체크
-}
+    if (typeof obj !== "object") {
+      // 오브젝트가 아닐 때는 그냥 반환
+      return obj;
+    } else if (Array.isArray(obj)) {
+      // map 사용해 요소 변환해 기존 값 복사
+      return obj.map((item) => myDeepCopy(item));
+    } else {
+      // 넣을 배열 생성
+      const copy = {};
+      // 배열에 넣을 객체 속성 추가
+      for (let key in obj) {
+        copy[key] = myDeepCopy(obj[key]);
+      }
+      return copy;
+    }
+        * 힌트: 재귀함수 사용, typeof로 타입 체크, Array.isArray로 배열 체크
+    }
     </pre>
     <button onclick="testStep2()">Step 2 테스트</button>
     <pre id="result2"></pre>
